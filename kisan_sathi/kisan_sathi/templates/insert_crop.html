@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Your Crop</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h2>List Your Crop</h2>
+    
+    <form action="{% url 'insert_crop' %}" method="POST">
+        {% csrf_token %}
+        
+        <label for="crop_name">Crop Name:</label>
+        <input type="text" id="crop_name" name="crop_name" required>
+
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required>
+
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" required>
+
+        <label for="price">Price (₹ per kg):</label>
+        <input type="number" id="price" name="price" required>
+
+        <label for="seller_name">Your Name:</label>
+        <input type="text" id="seller_name" name="seller_name" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <button type="submit">Add Crop</button>
+    </form>
+
+    <a href="{% url 'seller_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

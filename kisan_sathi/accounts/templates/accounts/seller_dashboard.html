@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+    }
+
+    .btn-add {
+        background-color: #28a745;
+    }
+
+    .btn-add:hover {
+        background-color: #218838;
+    }
+
+    .btn-logout {
+        background-color: #dc3545;
+    }
+
+    .btn-logout:hover {
+        background-color: #c82333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f8f9fa;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    .actions a {
+        text-decoration: none;
+        margin: 0 5px;
+        font-weight: bold;
+    }
+
+    .edit {
+        color: #007bff;
+    }
+
+    .edit:hover {
+        text-decoration: underline;
+    }
+
+    .delete {
+        color: #dc3545;
+    }
+
+    .delete:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+        table, th, td {
+            font-size: 14px;
+            padding: 8px;
+        }
+        
+        .action-buttons {
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+    }
+</style>
+
+<div class="container">
+    <h2>📋 Seller Dashboard</h2>
+    
+    <h2>👋 Welcome, {{ seller_name }}!</h2>  <!-- Display seller's name -->
+
+    <div class="action-buttons">
+        <a href="{% url 'add_crop' %}" class="btn btn-add">➕ Add New Crop</a>
+        <a href="{% url 'logout_view' %}" class="btn btn-logout">🚪 Logout</a>
+    </div>
+
+    <table>
+        <tr>
+            <th>Crop Name</th>
+            <th>Variety</th>
+            <th>Weight (kg)</th>
+            <th>Price (₹)</th>
+            <th>Contact No</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+        {% for crop in crops %}
+        <tr>
+            <td>{{ crop.name }}</td>
+            <td>{{ crop.variety }}</td>
+            <td>{{ crop.weight }}</td>
+            <td>₹{{ crop.price }}</td>
+            <td>{{ crop.contact_no }}</td>
+            <td>{{ crop.address }}</td>
+            <td class="actions">
+                <a href="{% url 'edit_crop' crop.id %}" class="edit">✏️ Edit</a> |
+                <a href="{% url 'delete_crop' crop.id %}" class="delete" onclick="return confirm('Are you sure?')">🗑 Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No crops added yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

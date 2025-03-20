@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buyer Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, {{ user.name }} (Buyer)</h2>
+
+    <p>Email: {{ user.email }}</p>
+    <p>Phone: {{ user.phone }}</p>
+
+    <h3>Available Crops:</h3>
+    <ul>
+        <li>Wheat - 100kg - $50</li>
+        <li>Rice - 50kg - $40</li>
+    </ul>
+
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

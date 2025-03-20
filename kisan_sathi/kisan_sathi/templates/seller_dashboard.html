@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Crops</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <h2>Sell Your Crops</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="crop_name">Crop Name:</label>
+        <input type="text" name="crop_name" required><br>
+
+        <label for="category">Category:</label>
+        <select name="category" required>
+            <option value="Fruits">Fruits</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Grains">Grains</option>
+        </select><br>
+
+        <label for="weight">Weight (kg):</label>
+        <input type="number" name="weight" required><br>
+
+        <label for="price">Price (₹):</label>
+        <input type="number" name="price" required><br>
+
+        <label for="seller_name">Your Name:</label>
+        <input type="text" name="seller_name" required><br>
+
+        <button type="button" onclick="getLocation()">📍 Use My Location</button><br>
+
+        <input type="hidden" name="latitude" id="latitude">
+        <input type="hidden" name="longitude" id="longitude">
+        <input type="text" name="location" id="location" placeholder="City, State" readonly required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        let lat = position.coords.latitude;
+                        let lon = position.coords.longitude;
+
+                        document.getElementById("latitude").value = lat;
+                        document.getElementById("longitude").value = lon;
+
+                        // Fetch city and state using OpenStreetMap API
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                let address = data.address;
+                                let city = address.city || address.town || address.village || "Unknown City";
+                                let state = address.state || "Unknown State";
+                                let full_address = `${city}, ${state}`;
+                                
+                                document.getElementById("location").value = full_address;
+                                alert("Location added successfully!");
+                            })
+                            .catch(error => alert("Error fetching location details."));
+                    },
+                    function(error) {
+                        alert("Error getting location. Please enable GPS.");
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+    </script>
+
+</body>
+</html>

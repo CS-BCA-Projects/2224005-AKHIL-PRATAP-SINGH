@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Crop</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Add your CSS file link here -->
+</head>
+<body>
+    <div class="container">
+        <h2>Tell us about your requirements</h2>
+        <div class="toggle-buttons">
+            <button class="sell">I want to Sell</button>
+            <button class="buy">I want to Buy</button>
+        </div>
+        
+        <form action="/insert_crop/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <label for="commodity">Commodity*</label>
+            <select id="commodity" name="commodity" required>
+                <option value="Green Moong">Green Moong - Green Moong</option>
+                <!-- Add more options dynamically if needed -->
+            </select>
+            
+            <label for="quantity">Quantity*</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" required>
+            <select>
+                <option>QTL</option>
+            </select>
+            
+            <label for="price">Price*</label>
+            <input type="number" id="price" name="price" placeholder="Enter price" required>
+            <select>
+                <option>INR</option>
+            </select>
+            <span>/ QTL</span>
+            
+            <label for="location">Location*</label>
+            <input type="text" id="location" name="location" placeholder="Enter city, state" required>
+            
+            <label for="start_date">Start Date*</label>
+            <input type="date" id="start_date" name="start_date" required>
+            
+            <label for="end_date">End Date*</label>
+            <input type="date" id="end_date" name="end_date" required>
+            
+            <label for="details">Quality Standards, Payment terms & Other Information</label>
+            <textarea id="details" name="details" placeholder="Enter relevant information..."></textarea>
+            
+            <div class="upload-section">
+                <h3>Upload Documents</h3>
+                <input type="file" name="documents" multiple required>
+                <p>Please upload Quality Certificates & Commodity Images</p>
+            </div>
+            
+            <div class="terms">
+                <input type="checkbox" required>
+                <label>By creating this trade, I agree to share my contact information...</label>
+            </div>
+            
+            <div class="buttons">
+                <button type="button" class="draft">Save as Draft</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        
+        <div class="connect">
+            <button class="whatsapp">Connect With Us</button>
+        </div>
+    </div>
+</body>
+</html>

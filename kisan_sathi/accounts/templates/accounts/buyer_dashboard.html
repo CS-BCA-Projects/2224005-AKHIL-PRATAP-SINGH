@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard</title>     
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .filter-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .filter-form select, .filter-form button {
+            padding: 8px;
+            font-size: 16px;
+        }
+        .crop-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .crop-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .crop-card:hover {
+            transform: scale(1.05);
+        }
+        .crop-card h2 {
+            margin: 0;
+            color: #007bff;
+        }
+        .crop-card p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .seller-info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+        @media (max-width: 600px) {
+            .crop-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <h1>Buyer Dashboard</h1>
+        <h2>Welcome, {{ buyer_name }}! Tell me what you are looking for?</h2>
+
+        <!-- Filter Form -->
+        <form method="GET" class="filter-form">
+            <select name="crop_name">
+                <option value="">All Crops</option>
+                {% for name in crop_names %}
+                    <option value="{{ name }}" {% if name == crop_name %}selected{% endif %}>{{ name }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="variety">
+                <option value="">All Varieties</option>
+                {% for var in varieties %}
+                    <option value="{{ var }}" {% if var == variety %}selected{% endif %}>{{ var }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="location">
+                <option value="">All Locations</option>
+                {% for loc in locations %}
+                    <option value="{{ loc }}" {% if loc == location %}selected{% endif %}>{{ loc }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Filter</button>
+            <button type="reset" onclick="window.location.href='{{ request.path }}'">Reset</button>
+        </form>
+
+        <!-- Crop Listings -->
+        <div class="crop-list">
+            {% for crop in crops %}
+            <div class="crop-card">
+                <h2>{{ crop.name }}</h2>
+                <p><strong>Variety:</strong> {{ crop.variety }}</p>
+                <p><strong>Weight:</strong> {{ crop.weight }} kg</p>
+                <p><strong>Price:</strong> ₹{{ crop.price }}</p>
+
+                <div class="seller-info">
+                    <p><strong>Seller:</strong> {{ crop.seller_name }}</p>
+                    <p><strong>Contact:</strong> {{ crop.contact_no }}</p>
+                    <p><strong>Address:</strong> {{ crop.address }}</p>
+                </div>
+            </div>
+            {% empty %}
+                <p>No crops available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

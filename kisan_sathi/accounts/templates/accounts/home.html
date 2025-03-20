@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan Sathi - Home</title>
+    <style>
+        /* Reset default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Full-screen background */
+        body {
+            background: url('https://source.unsplash.com/1600x900/?farm,agriculture') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px; /* Reduced space between navbar and welcome text */
+            color: white;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+        }
+
+        /* Website name */
+        .navbar .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff9800;
+        }
+
+        /* Navigation links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            padding: 8px 15px;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: #ff9800;
+            color: black;
+        }
+
+        /* Hamburger menu (hidden by default) */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Welcome message */
+        .welcome-message {
+            margin-top: 40px; /* Reduced margin to bring it closer to navbar */
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtext {
+            font-size: 20px;
+            margin-top: 5px; /* Reduced space between welcome text and subtext */
+        }
+
+        .buttons {
+            margin-top: 15px; /* Reduced space between subtext and buttons */
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            background: #ff9800;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #e68900;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                right: 10px;
+                top: 60px;
+                background: rgba(0, 0, 0, 0.9);
+                width: 150px;
+                text-align: right;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo"> <a href="{% url 'home' %}"></a>Kisan Sathi</div>
+        <div class="menu-toggle">&#9776;</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'register_view' %}">Register</a></li>
+            <li><a href="{% url 'login_view' %}">Login</a></li>
+            <li><a href="{% url 'about_view' %}">About</a></li>
+            <li><a href="{% url 'contact_view' %}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Welcome Message -->
+    <div class="welcome-message">
+        Welcome to Kisan Sathi
+    </div>
+    <div class="subtext">
+        A platform for farmers and buyers to connect and trade crops easily.
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+        <a href="{% url 'register_view' %}" class="btn">Register</a>
+        <a href="{% url 'login_view' %}" class="btn">Login</a>
+    </div>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+</body>
+</html>

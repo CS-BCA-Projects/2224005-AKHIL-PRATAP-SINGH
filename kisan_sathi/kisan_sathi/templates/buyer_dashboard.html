@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <h2>Available Crops</h2>
+
+    <!-- Search, Filter, and Sort Form -->
+    <form method="GET" action="">
+        <input type="text" name="search" placeholder="Search by crop name" value="{{ request.GET.search }}">
+
+        <label for="category">Category:</label>
+        <select name="category">
+            <option value="">All</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Grains">Grains</option>
+        </select>
+
+        <button type="submit">Apply Filters</button>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Crop Name</th>
+            <th>Category</th>
+            <th>Weight (kg)</th>
+            <th>Price (₹)</th>
+            <th>Seller</th>
+            <th>Seller Contact</th>
+            <th>Location</th>
+        </tr>
+        {% for crop in crops %}
+        <tr>
+            <td>{{ crop.crop_name }}</td>
+            <td>{{ crop.category }}</td>
+            <td>{{ crop.weight }}</td>
+            <td>{{ crop.price }}</td>
+            <td>{{ crop.seller_name }}</td>
+            <td>{{ crop.seller_contact }}</td>  <!-- Contact number added -->
+            <td>{{crop.location}}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No crops found. Try changing your search or filters.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

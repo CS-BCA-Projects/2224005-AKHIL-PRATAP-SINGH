@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Kisan Sathi{% endblock %}</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color:rgb(43, 40, 36);;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Navigation Menu */
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mobile Navigation */
+        .menu-icon {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: #007bff;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .mobile-nav a {
+            padding: 10px;
+            color: white;
+            text-align: center;
+            display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .mobile-nav.active {
+                display: flex;
+            }
+
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+    <header>
+        <h1>Kisan Sathi</h1>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <nav>
+            <a href="{% url 'seller_dashboard' %}">Seller Dashboard</a>
+            <a href="{% url 'buyer_dashboard' %}">Buyer Dashboard</a>
+            <a href="{% url 'logout_view' %}">Logout</a>
+        </nav>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="{% url 'seller_dashboard' %}">Seller Dashboard</a>
+            <a href="{% url 'buyer_dashboard' %}">Buyer Dashboard</a>
+            <a href="{% url 'logout_view' %}">Logout</a>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("mobileNav").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>
