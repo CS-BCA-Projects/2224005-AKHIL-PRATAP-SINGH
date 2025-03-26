@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,23 +10,132 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
+            background-color: #fdfbf7;
+            margin: 0;
+            padding: 0;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
         h1 {
+            text-align: center;
             color: #ff9800;
         }
+
         p {
-            max-width: 600px;
-            margin: 20px auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: calc(50% - 10px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-container input.full-width,
+        .form-container textarea {
+            width: 100%;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            background-color: #e68900;
+        }
+
+        .back-home {
+            text-align: center;
+            display: block;
+            margin-top: 15px;
+            font-size: 16px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                flex-direction: column;
+            }
+            .form-container input {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Contact Us</h1>
-    <p>Email: support@kisansathi.com</p>
-    <p>Phone: +91 98765 43210</p>
-    <p>Address: Farmer's Market, Agri Street, India</p>
-    <a href="{% url 'home' %}">Back to Home</a>
+
+    <div class="container">
+        <h1>Contact Us</h1>
+
+        <div class="contact-info">
+            <p>Email: <strong>support@kisansathi.com</strong></p>
+            <p>Phone: <strong>+91 98765 43210</strong></p>
+            <p>Address: <strong>Farmer's Market, Agri Street, India</strong></p>
+        </div>
+{% comment %} 
+        <form action="{% url 'contact_view' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-container">
+                <input type="text" name="first_name" placeholder="First Name*" required>
+                <input type="text" name="last_name" placeholder="Last Name*" required>
+                <input type="email" name="email" placeholder="E-mail*" required>
+                <input type="tel" name="phone" placeholder="Phone Number*" required>
+                <input type="text" name="subject" class="full-width" placeholder="Subject">
+                <textarea name="message" class="full-width" placeholder="Message"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form> {% endcomment %}
+
+        <a href="{% url 'home' %}" class="back-home">Back to Home</a>
+    </div>
+
 </body>
 </html>
+{% endblock %}

@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +72,7 @@
     <div class="container">
         
         <h1>Buyer Dashboard</h1>
-        <h2>Welcome, {{ buyer_name }}! Tell me what you are looking for?</h2>
+        <h2>Welcome to Kisan Sathi, {{ buyer_name }}! Tell me what you are looking for?</h2>
 
         <!-- Filter Form -->
         <form method="GET" class="filter-form">
@@ -122,3 +124,6 @@
 </body>
 
 </html>
+
+{% endblock %}
+

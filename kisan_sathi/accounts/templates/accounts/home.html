@@ -14,7 +14,7 @@
         }
 
         /* Full-screen background */
-        body {
+         body {
             background: url('https://source.unsplash.com/1600x900/?farm,agriculture') no-repeat center center/cover;
             height: 100vh;
             display: flex;
@@ -23,8 +23,8 @@
             align-items: center;
             text-align: center;
             padding-top: 60px; /* Reduced space between navbar and welcome text */
-            color: white;
-        }
+            color: white; 
+        } 
 
         /* Navbar styles */
         .navbar {
@@ -143,6 +143,7 @@
         <div class="logo"> <a href="{% url 'home' %}"></a>Kisan Sathi</div>
         <div class="menu-toggle">&#9776;</div>
         <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'register_view' %}">Register</a></li>
             <li><a href="{% url 'login_view' %}">Login</a></li>
             <li><a href="{% url 'about_view' %}">About</a></li>

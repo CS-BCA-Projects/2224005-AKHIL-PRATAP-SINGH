@@ -1,5 +1,8 @@
 from django.urls import path
 from .views import home, register_view,login_view , logout_view , seller_dashboard  , buyer_dashboard ,add_crop ,edit_crop , delete_crop,about_view,contact_view
+
+
+
 urlpatterns = [
     path("", home, name="home"),
     path("register/", register_view, name="register_view"),  # Add this
@@ -16,3 +19,12 @@ urlpatterns = [
     
     
 ]
+
+
+
+
+
+
+
+
+

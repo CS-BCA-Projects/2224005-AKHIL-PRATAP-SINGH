@@ -5,7 +5,9 @@ from pymongo import MongoClient
 import hashlib
 import uuid
 from django.http import HttpResponse
-
+from django.shortcuts import render, redirect
+from django.contrib.sessions.backends.base import SessionBase
+from kisan_sathi.settings import MONGO_DB
 
 def home(request):
     return render(request, "accounts/home.html")
@@ -25,16 +27,6 @@ def about_view(request):
 def contact_view(request):
     return render(request, "accounts/contact.html")
 
-
-
-
-# Connect to MongoDB
-client = MongoClient("mongodb://localhost:27017/")
-db = client["kisan_sathi"]
-
-from django.shortcuts import render, redirect
-import hashlib
-from pymongo import MongoClient
 
 # Connect to MongoDB (Ensure your MongoDB server is running)
 client = MongoClient("mongodb://localhost:27017/")
@@ -76,10 +68,6 @@ def register_view(request):
 
 
 # Login view
-from django.shortcuts import render, redirect
-import hashlib
-from pymongo import MongoClient
-
 # Connect to MongoDB (Ensure your MongoDB server is running)
 client = MongoClient("mongodb://localhost:27017/")
 db = client["kisan_sathi"]
@@ -207,25 +195,12 @@ def register_view(request):
     return render(request, "accounts/register.html")
 
 
-
-
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from bson import ObjectId
-from django.shortcuts import render, redirect
-from bson import ObjectId
-
-from django.shortcuts import render, redirect
-from pymongo import MongoClient
 from bson import ObjectId
 
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017/")
 db = client["kisan_sathi"]
-
-from bson import ObjectId
-
-from bson import ObjectId
 
 def seller_dashboard(request):
     if "user_id" not in request.session or request.session.get("role") != "seller":
@@ -244,14 +219,6 @@ def seller_dashboard(request):
 
     return render(request, "accounts/seller_dashboard.html", {"crops": crops, "seller_name": seller_name})
 
-
-
-
-
-
-from django.shortcuts import render, redirect
-from bson import ObjectId
-from pymongo import MongoClient
 
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017/")
@@ -302,13 +269,6 @@ def add_crop(request):
 
     return render(request, "accounts/add_crop.html")
 
-
-
-
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from bson import ObjectId
-from pymongo import MongoClient
 
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017/")
@@ -365,10 +325,7 @@ def delete_crop(request, crop_id):
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017/")
 db = client["kisan_sathi"]
-crop_collection = db["crops"]
-
-from django.shortcuts import render
-from bson import ObjectId
+crop_collection = db["crops"] 
 
 
 def buyer_dashboard(request):
@@ -429,5 +386,14 @@ def buyer_dashboard(request):
         "varieties": varieties,
         "locations": locations,
     })
+
+
+
+
+
+
+
+
+
 
 
