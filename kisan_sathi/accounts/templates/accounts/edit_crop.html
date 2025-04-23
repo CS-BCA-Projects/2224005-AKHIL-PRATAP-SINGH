@@ -3,8 +3,11 @@
 {% block content %}
 <style>
     body {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+        url('https://www.iisd.org/sites/default/files/styles/og_image/public/2020-06/RS2085_food-agriculture-topic.jpg?itok=cM6jCv9Q') 
+        no-repeat center center/cover;
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        {% comment %} background-color: #f4f4f4; {% endcomment %}
         margin: 0;
         padding: 0px;
     }
@@ -44,7 +47,7 @@
     }
 
     input {
-        width: 100%;
+        width: 95%;
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;

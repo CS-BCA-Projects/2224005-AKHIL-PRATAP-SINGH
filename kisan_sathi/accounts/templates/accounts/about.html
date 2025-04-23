@@ -1,36 +1,90 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Kisan Sathi</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 0px;
-            background-color: white
-        }
-        h1 {
-            color: #ff9800;
-        }
-        p {
-            max-width: 600px;
-            margin: 20px auto;
-        }
-    </style>
-</head>
-<body>
+<style>
+
+    body {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+        url('https://www.iisd.org/sites/default/files/styles/og_image/public/2020-06/RS2085_food-agriculture-topic.jpg?itok=cM6jCv9Q') 
+        no-repeat center center/cover;
+
+    }
     
-    <h1>About Kisan Sathi</h1>
+    .about-container {
+        max-width: 900px;
+        margin: 40px auto;
+        background-color:rgba(255, 255, 255, 0.81);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        font-family: 'Arial', sans-serif;
+        line-height: 1.7;
+        color: #333;
+    }
+
+    .about-container h2 {
+        color: #28a745;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .about-container h3 {
+        color: #ff9800;
+        margin-top: 25px;
+    }
+
+    .about-container ul {
+        padding-left: 20px;
+    }
+
+    .about-container ul li {
+        margin: 8px 0;
+    }
+
+    @media (max-width: 600px) {
+        .about-container {
+            padding: 20px;
+        }
+
+        .about-container h2, .about-container h3 {
+            font-size: 20px;
+        }
+    }
+</style>
+
+<div class="about-container">
+    <h2>👨‍🌾 About Kisan Sathi</h2>
     <p>
-        Kisan Sathi is a platform that connects farmers and buyers, making crop trading simple and efficient.
-        Our goal is to empower farmers by providing a digital marketplace to sell their produce directly.
+        <strong>Kisan Sathi</strong> is a simple yet powerful platform built to connect <strong>farmers</strong> directly with <strong>buyers</strong> across India. Whether you're growing crops or looking to purchase them, Kisan Sathi makes it easier, faster, and more transparent — all without middlemen.
     </p>
-    <a href="{% url 'home' %}">Back to Home</a>
-</body>
-</html>
+
+    <h3>🌱 Why Kisan Sathi?</h3>
+    <ul>
+        <li>✅ Farmers can list crops with weight, variety, and price.</li>
+        <li>✅ Buyers can explore listings and contact sellers directly.</li>
+        <li>✅ No commissions or hidden charges — we promote fair trade.</li>
+        
+    </ul>
+
+    <h3>🤝 Who Can Use It?</h3>
+    <ul>
+        <li>👩‍🌾 <strong>Farmers</strong> looking to sell their crops directly.</li>
+        <li>🧑‍💼 <strong>Buyers</strong> interested in sourcing fresh produce from local farms.</li>
+        <li>🌍 Anyone promoting rural upliftment and transparency in agriculture.</li>
+    </ul>
+
+    <h3>🔐 Trust & Simplicity</h3>
+    <p>
+        We focus on making things simple and reliable. No online payments are handled through our app — all transactions happen personally between buyer and seller. Our job is just to connect you both.
+    </p>
+
+    <h3>🚀 Our Vision</h3>
+    <p>
+        To empower every farmer in India by giving them easy access to digital tools, broader markets, and better profits. Together, let’s make agriculture smarter and more sustainable.
+    </p>
+
+    <p style="text-align:center; margin-top: 30px;">
+        <strong>Let’s grow together. 🌾</strong>
+    </p>
+</div>
 {% endblock %}

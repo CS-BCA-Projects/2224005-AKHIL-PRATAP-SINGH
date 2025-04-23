@@ -15,7 +15,9 @@
 
         /* Full-screen background */
          body {
-            background: url('https://source.unsplash.com/1600x900/?farm,agriculture') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+             url('https://www.iisd.org/sites/default/files/styles/og_image/public/2020-06/RS2085_food-agriculture-topic.jpg?itok=cM6jCv9Q') 
+             no-repeat center center/cover;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -85,11 +87,13 @@
             font-size: 36px;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #ff9800; 
         }
 
         .subtext {
             font-size: 20px;
             margin-top: 5px; /* Reduced space between welcome text and subtext */
+            color: orange
         }
 
         .buttons {
@@ -111,6 +115,8 @@
         .btn:hover {
             background: #e68900;
         }
+
+
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -164,6 +170,8 @@
         <a href="{% url 'register_view' %}" class="btn">Register</a>
         <a href="{% url 'login_view' %}" class="btn">Login</a>
     </div>
+    
+    
 
     <!-- JavaScript for Mobile Menu -->
     <script>

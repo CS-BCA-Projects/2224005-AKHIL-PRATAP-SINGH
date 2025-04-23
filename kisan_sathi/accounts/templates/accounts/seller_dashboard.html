@@ -3,16 +3,19 @@
 {% block content %}
 <style>
     body {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+        url('https://www.iisd.org/sites/default/files/styles/og_image/public/2020-06/RS2085_food-agriculture-topic.jpg?itok=cM6jCv9Q') 
+        no-repeat center center/cover;
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        {% comment %} background-color: #f4f4f4; {% endcomment %}
         margin: 0;
-        padding: 0px;
+        padding: 0;
     }
 
     .container {
         max-width: 900px;
         margin: auto;
-        background: white;
+        background:  #f4f4f4;
         padding: 20px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
@@ -21,12 +24,15 @@
     h2 {
         text-align: center;
         color: #333;
+        margin-bottom: 10px;
     }
 
     .action-buttons {
         display: flex;
         justify-content: space-between;
         margin-bottom: 15px;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
     .btn {
@@ -35,6 +41,8 @@
         border-radius: 5px;
         color: white;
         font-weight: bold;
+        flex: 1 1 auto;
+        text-align: center;
     }
 
     .btn-add {
@@ -57,6 +65,7 @@
         width: 100%;
         border-collapse: collapse;
         background: white;
+        margin-top: 10px;
     }
 
     th, td {
@@ -99,24 +108,56 @@
         text-decoration: underline;
     }
 
-    @media (max-width: 600px) {
-        table, th, td {
-            font-size: 14px;
-            padding: 8px;
+    /* Responsive Table */
+    @media (max-width: 768px) {
+        table, thead, tbody, th, td, tr {
+            display: block;
         }
-        
+
+        thead tr {
+            display: none;
+        }
+
+        tr {
+            margin-bottom: 15px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            padding: 10px;
+        }
+
+        td {
+            text-align: left;
+            padding: 8px 10px;
+            position: relative;
+        }
+
+        td::before {
+            content: attr(data-label);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .actions {
+            text-align: left;
+        }
+
         .action-buttons {
             flex-direction: column;
-            gap: 10px;
-            align-items: center;
+            align-items: stretch;
+        }
+
+        .btn {
+            width: 100%;
         }
     }
 </style>
 
 <div class="container">
     <h2>📋 Seller Dashboard</h2>
-    
-    <h2>👋 Welcome, {{ seller_name }}!</h2>  <!-- Display seller's name -->
+    <h2>👋 Welcome, {{ seller_name }}!</h2>
 
     <div class="action-buttons">
         <a href="{% url 'add_crop' %}" class="btn btn-add">➕ Add New Crop</a>
@@ -124,24 +165,27 @@
     </div>
 
     <table>
-        <tr>
-            <th>Crop Name</th>
-            <th>Variety</th>
-            <th>Weight (kg)</th>
-            <th>Price (₹)</th>
-            <th>Contact No</th>
-            <th>Address</th>
-            <th>Actions</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>Crop Name</th>
+                <th>Variety</th>
+                <th>Weight (kg)</th>
+                <th>Price (₹)</th>
+                <th>Contact No</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for crop in crops %}
         <tr>
-            <td>{{ crop.name }}</td>
-            <td>{{ crop.variety }}</td>
-            <td>{{ crop.weight }}</td>
-            <td>₹{{ crop.price }}</td>
-            <td>{{ crop.contact_no }}</td>
-            <td>{{ crop.address }}</td>
-            <td class="actions">
+            <td data-label="Crop Name">{{ crop.name }}</td>
+            <td data-label="Variety">{{ crop.variety }}</td>
+            <td data-label="Weight">{{ crop.weight }}</td>
+            <td data-label="Price">₹{{ crop.price }}</td>
+            <td data-label="Contact No">{{ crop.contact_no }}</td>
+            <td data-label="Address">{{ crop.address }}</td>
+            <td data-label="Actions" class="actions">
                 <a href="{% url 'edit_crop' crop.id %}" class="edit">✏️ Edit</a> |
                 <a href="{% url 'delete_crop' crop.id %}" class="delete" onclick="return confirm('Are you sure?')">🗑 Delete</a>
             </td>
@@ -151,6 +195,7 @@
             <td colspan="7">No crops added yet.</td>
         </tr>
         {% endfor %}
+        </tbody>
     </table>
 </div>
 

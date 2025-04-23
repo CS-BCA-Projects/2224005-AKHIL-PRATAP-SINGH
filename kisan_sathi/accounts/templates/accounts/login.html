@@ -6,15 +6,17 @@
     <title>Login - Kisan Sathi</title>
     <style>
         body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            url('https://deshbhagatuniversity.in/wp-content/uploads/2024/08/955.jpg') 
+            no-repeat center center/cover;
             font-family: Arial, sans-serif;
-            background: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
         .container {
-            background: white;
+            background:rgba(255, 255, 255, 0.68) ;
             padding: 20px;
             box-shadow: 0px 0px 10px gray;
             border-radius: 5px;
@@ -25,20 +27,21 @@
             margin-bottom: 20px;
         }
         input {
-            width: 100%;
+            width: 90%;
             padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            margin: 12px 0;
+            border: 2px solid #ccc;
+            border-radius: 7px;
         }
         .btn {
             width: 100%;
             background: #e68900;
             color: white;
             padding: 10px;
-            border: none;
+            border-radius: 7px;
             margin-top: 10px;
             cursor: pointer;
+            border:none;
         }
         .btn:hover {
             background: darkgreen;
@@ -60,6 +63,7 @@
     </style>
 </head>
 <body>
+    
     <div class="container">
         <h2>Login</h2>
         {% if error %} <p class="msg">{{ error }}</p> {% endif %}
